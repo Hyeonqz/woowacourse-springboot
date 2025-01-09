@@ -1,4 +1,6 @@
-# 4주차 - Convenience
+# 3주차 - Lotto
 
 ## 요구사항
+
+
 
