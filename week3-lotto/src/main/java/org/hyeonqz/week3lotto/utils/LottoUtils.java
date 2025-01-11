@@ -35,4 +35,22 @@ public class LottoUtils {
 			.collect(Collectors.joining(", "));
 	}
 
+	public static String issueBonusNumber(String winningNumber) {
+		winningNumber = winningNumber.replaceAll("[^0-9]", "");
+
+		var set = new HashSet<Integer>();
+
+		for (int i = 0; i < winningNumber.length() ; i++) {
+			set.add(winningNumber.charAt(i) - '0');
+		}
+
+		int num = 0;
+		while(set.size() < 7) {
+			num = (int) (Math.random() * 45) + 1;
+			set.add(num);
+		}
+
+		return String.valueOf(num);
+	}
+
 }

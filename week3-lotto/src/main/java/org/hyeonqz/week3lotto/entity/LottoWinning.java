@@ -16,8 +16,22 @@ public class LottoWinning {
 	@Comment("당첨번호")
 	private String winningNumber;
 
+	@Comment("보너스 번호")
+	private String bonusNumber;
+
 	public LottoWinning (String winningNumber) {
 		this.winningNumber = winningNumber;
+	}
+
+	public String getWinningNumber () {
+		return winningNumber;
+	}
+
+	public LottoWinning () {
+	}
+
+	public void createBonusNumber(String bonusNumber) {
+		this.bonusNumber = bonusNumber;
 	}
 
 }

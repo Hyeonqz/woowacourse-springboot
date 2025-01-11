@@ -26,4 +26,10 @@ public class LottoOutput {
 
 	}
 
+	public record ResponseBonusNumber(
+		String bonusNumber
+	) {
+
+	}
+
 }

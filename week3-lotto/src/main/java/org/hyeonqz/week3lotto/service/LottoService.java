@@ -20,7 +20,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional(readOnly = true)
 @Service
 public class LottoService {
-	private Logger log = Logger.getLogger("LottoService");
+	private final Logger log = Logger.getLogger("LottoService");
 
 	private final LottoRepository lottoRepository;
 	private final LottoDataRepository lottoDataRepository;
@@ -61,6 +61,23 @@ public class LottoService {
 		lottoWinningRepository.save(lottoWinning);
 
 		return new LottoOutput.ResponseWinning(winningNumber);
+	}
+
+	@Transactional
+	public LottoOutput.ResponseBonusNumber createBonusNumber() {
+		// 당첨 번호를 조회한다.
+		LottoWinning winning = lottoWinningRepository.findById(1L)
+			.orElseThrow(() -> new RuntimeException("당첨번호가 존재하지 않습니다?"));
+
+		String winningNumber = winning.getWinningNumber();
+
+		// 당첨 번호에 있지 않은 수 중에서 랜덤으로 45이하의 수 1개를 생성한다.
+		String bonus = LottoUtils.issueBonusNumber(winningNumber);
+		winning.createBonusNumber(bonus);
+
+		lottoWinningRepository.save(winning);
+
+		return new LottoOutput.ResponseBonusNumber(bonus);
 	}
 
 	private int countLotto (int amount) {

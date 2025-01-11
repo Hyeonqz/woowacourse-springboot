@@ -28,4 +28,10 @@ public class LottoController {
 		LottoOutput.ResponseWinning responseWinning = lottoService.responseWinningNumber();
 		return ResponseEntity.ok(responseWinning);
 	}
+
+	@PostMapping("/response/bonusNum")
+	public ResponseEntity<?> responseBonusNum() {
+		LottoOutput.ResponseBonusNumber bonusNumber = lottoService.createBonusNumber();
+		return ResponseEntity.ok(bonusNumber);
+	}
 }
