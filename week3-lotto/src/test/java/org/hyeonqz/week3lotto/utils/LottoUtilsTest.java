@@ -1,6 +1,11 @@
 package org.hyeonqz.week3lotto.utils;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -26,4 +31,5 @@ public class LottoUtilsTest {
 		// then
 		Assertions.assertThat(set).hasSize(6);
 	}
+
 }

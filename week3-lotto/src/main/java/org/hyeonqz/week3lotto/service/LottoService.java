@@ -1,6 +1,8 @@
 package org.hyeonqz.week3lotto.service;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 import java.util.logging.Logger;
@@ -44,7 +46,11 @@ public class LottoService {
 		String lottoStr = lottoListConvertString(lottoList);
 
 		for (int i = 0; i < count; i++) {
-			LottoData lottoData = new LottoData(lotto.getId(), lottoList.get(i).toString());
+			Set<Integer> lottoNumbers = lottoList.get(i);
+			List<Integer> sortedNumbers = new ArrayList<>(lottoNumbers);
+			Collections.sort(sortedNumbers);
+
+			LottoData lottoData = new LottoData(lotto.getId(), sortedNumbers.toString());
 			lottoDataRepository.save(lottoData);
 		}
 
