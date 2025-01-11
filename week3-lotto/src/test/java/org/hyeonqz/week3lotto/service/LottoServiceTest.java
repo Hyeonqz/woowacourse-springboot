@@ -49,6 +49,20 @@ class LottoServiceTest {
 		Assertions.assertThat(bonusNumber.bonusNumber()).isNotNull();
 	}
 
+	@Test
+	@DisplayName("총 구매한 로또 개수와 로또 를 출력한다")
+	void showTotalLotto() {
+	    // given & when
+		int amount = 10;
+		LottoOutput.ResponseResult lotto = lottoService.createLotto(amount);
+		LottoOutput.ResponseShowLottoData lottoData = lottoService.getLottoData();
+
+		System.out.println(lottoData);
+
+		// then
+		Assertions.assertThat(lottoData).isNotNull();
+	}
+
 
 
 }

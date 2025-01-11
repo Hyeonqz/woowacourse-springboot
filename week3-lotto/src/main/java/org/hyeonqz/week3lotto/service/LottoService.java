@@ -86,6 +86,17 @@ public class LottoService {
 		return new LottoOutput.ResponseBonusNumber(bonus);
 	}
 
+	public LottoOutput.ResponseShowLottoData getLottoData() {
+		List<LottoData> lottoData = lottoDataRepository.findLottoDataByLottoId(1L);
+
+		List<String> list = new ArrayList<>();
+		for (LottoData lottoDatum : lottoData) {
+			list.add(lottoDatum.getLottoNum());
+		}
+
+		return new LottoOutput.ResponseShowLottoData(lottoData.size(), list);
+	}
+
 	private int countLotto (int amount) {
 		return amount / 1000;
 	}

@@ -1,6 +1,10 @@
 package org.hyeonqz.week3lotto.dtos;
 
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Set;
+
+import org.hyeonqz.week3lotto.entity.LottoData;
 
 public class LottoOutput {
 
@@ -32,4 +36,11 @@ public class LottoOutput {
 
 	}
 
+	public record ResponseShowLottoData(
+		int count,
+		List<String> lottoNum
+	) {
+
+
+	}
 }

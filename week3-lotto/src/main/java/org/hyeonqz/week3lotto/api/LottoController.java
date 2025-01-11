@@ -3,6 +3,7 @@ package org.hyeonqz.week3lotto.api;
 import org.hyeonqz.week3lotto.dtos.LottoOutput;
 import org.hyeonqz.week3lotto.service.LottoService;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,9 +18,9 @@ public class LottoController {
 		this.lottoService = lottoService;
 	}
 
-	@PostMapping("/create/{count}")
-	public ResponseEntity<?> createLotto(@PathVariable int count) {
-		LottoOutput.ResponseResult lotto = lottoService.createLotto(count);
+	@PostMapping("/create/{amount}")
+	public ResponseEntity<?> createLotto(@PathVariable int amount) {
+		LottoOutput.ResponseResult lotto = lottoService.createLotto(amount);
 		return ResponseEntity.ok(lotto);
 	}
 
@@ -33,5 +34,11 @@ public class LottoController {
 	public ResponseEntity<?> responseBonusNum() {
 		LottoOutput.ResponseBonusNumber bonusNumber = lottoService.createBonusNumber();
 		return ResponseEntity.ok(bonusNumber);
+	}
+
+	@GetMapping("/response")
+	public ResponseEntity<?> getLottoData() {
+		LottoOutput.ResponseShowLottoData lottoData = lottoService.getLottoData();
+		return ResponseEntity.ok(lottoData);
 	}
 }

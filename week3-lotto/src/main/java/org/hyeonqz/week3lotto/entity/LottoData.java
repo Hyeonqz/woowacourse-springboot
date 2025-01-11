@@ -24,4 +24,11 @@ public class LottoData {
 		this.lottoNum = lottoNum;
 	}
 
+	public LottoData () {
+	}
+
+	public String getLottoNum () {
+		return lottoNum;
+	}
+
 }
