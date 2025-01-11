@@ -2,11 +2,6 @@ package org.hyeonqz.week3lotto.service;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
 import org.assertj.core.api.Assertions;
 import org.hyeonqz.week3lotto.dtos.LottoOutput;
 import org.junit.jupiter.api.DisplayName;
@@ -41,6 +36,17 @@ class LottoServiceTest {
 
 		// then
 		Assertions.assertThat(responseWinning).isNotNull();
+	}
+
+	@Test
+	@DisplayName("보너스 번호를 출력한다.")
+	void createBonusNumber() {
+	    // given & when
+		LottoOutput.ResponseWinning responseWinning = lottoService.responseWinningNumber();
+		LottoOutput.ResponseBonusNumber bonusNumber = lottoService.createBonusNumber();
+
+	    // then
+		Assertions.assertThat(bonusNumber.bonusNumber()).isNotNull();
 	}
 
 
