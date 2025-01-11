@@ -9,8 +9,10 @@ import java.util.stream.Collectors;
 import org.hyeonqz.week3lotto.dtos.LottoOutput;
 import org.hyeonqz.week3lotto.entity.Lotto;
 import org.hyeonqz.week3lotto.entity.LottoData;
+import org.hyeonqz.week3lotto.entity.LottoWinning;
 import org.hyeonqz.week3lotto.repository.LottoDataRepository;
 import org.hyeonqz.week3lotto.repository.LottoRepository;
+import org.hyeonqz.week3lotto.repository.LottoWinningRepository;
 import org.hyeonqz.week3lotto.utils.LottoUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,14 +20,17 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional(readOnly = true)
 @Service
 public class LottoService {
-	private final LottoRepository lottoRepository;
-	private final LottoDataRepository lottoDataRepository;
-
 	private Logger log = Logger.getLogger("LottoService");
 
-	public LottoService (LottoRepository lottoRepository, LottoDataRepository lottoDataRepository) {
+	private final LottoRepository lottoRepository;
+	private final LottoDataRepository lottoDataRepository;
+	private final LottoWinningRepository lottoWinningRepository;
+
+	public LottoService (LottoRepository lottoRepository, LottoDataRepository lottoDataRepository,
+		LottoWinningRepository lottoWinningRepository) {
 		this.lottoRepository = lottoRepository;
 		this.lottoDataRepository = lottoDataRepository;
+		this.lottoWinningRepository = lottoWinningRepository;
 	}
 
 	@Transactional
@@ -46,6 +51,16 @@ public class LottoService {
 		LottoOutput.ResponseLottoData responseLottoData = new LottoOutput.ResponseLottoData(lottoStr);
 
 		return new LottoOutput.ResponseResult("jin",count,amount,responseLottoData, now);
+	}
+
+	@Transactional
+	public LottoOutput.ResponseWinning responseWinningNumber() {
+		String winningNumber = LottoUtils.issueWinningLotto();
+
+		LottoWinning lottoWinning = new LottoWinning(winningNumber);
+		lottoWinningRepository.save(lottoWinning);
+
+		return new LottoOutput.ResponseWinning(winningNumber);
 	}
 
 	private int countLotto (int amount) {

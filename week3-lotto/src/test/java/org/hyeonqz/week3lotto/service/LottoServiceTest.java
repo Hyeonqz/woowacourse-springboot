@@ -33,6 +33,16 @@ class LottoServiceTest {
 		Assertions.assertThat(lotto).isNotNull();
 	}
 
+	@Test
+	@DisplayName("로또 당첨 번호를 출력한다.")
+	void responseWiningLottoTest() {
+	    // given & when
+		LottoOutput.ResponseWinning responseWinning = lottoService.responseWinningNumber();
+
+		// then
+		Assertions.assertThat(responseWinning).isNotNull();
+	}
+
 
 
 }

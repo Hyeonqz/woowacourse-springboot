@@ -25,7 +25,7 @@ public class LottoController {
 
 	@PostMapping("/response/winningNum")
 	public ResponseEntity<?> responseWinningNum() {
-		// 담배피고와서 당첨번호 요청 api 까지 만들기
-		return ResponseEntity.ok("");
+		LottoOutput.ResponseWinning responseWinning = lottoService.responseWinningNumber();
+		return ResponseEntity.ok(responseWinning);
 	}
 }

@@ -20,4 +20,10 @@ public class LottoOutput {
 
 	}
 
+	public record ResponseWinning(
+		String winning
+	) {
+
+	}
+
 }
