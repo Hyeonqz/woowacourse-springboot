@@ -125,30 +125,20 @@ class LottoServiceTest {
 		Assertions.assertThat(winningList).isNotNull();
 	}
 
+	@Test
+	@DisplayName("로또 수익률을 구한다.")
+	void getMatchRate() {
+	    // given
+		lottoService.createLotto(10000);
+		lottoService.createWinningNumber();
+		lottoService.createBonusNumber();
 
+		// when
+		lottoService.getWinningList();
+		LottoOutput.showMatchRate matchRate = lottoService.getMatchRate();
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+		// then
+		Assertions.assertThat(matchRate).isNotNull();
+	}
 
 }

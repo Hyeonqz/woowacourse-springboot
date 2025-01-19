@@ -31,4 +31,6 @@ public class LottoData {
 		return lottoNum;
 	}
 
+
+
 }

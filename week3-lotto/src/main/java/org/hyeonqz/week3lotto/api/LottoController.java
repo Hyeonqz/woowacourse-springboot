@@ -51,7 +51,7 @@ public class LottoController {
 	// 수익률을 구한다
 	@GetMapping("/rate")
 	public ResponseEntity<?> getRateData() {
-
-		return ResponseEntity.ok("");
+		LottoOutput.showMatchRate matchRate = lottoService.getMatchRate();
+		return ResponseEntity.ok(matchRate);
 	}
 }

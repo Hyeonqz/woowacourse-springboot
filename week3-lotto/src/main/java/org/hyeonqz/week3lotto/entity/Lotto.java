@@ -42,6 +42,10 @@ public class Lotto {
 		return id;
 	}
 
+	public Integer getAmount () {
+		return amount;
+	}
+
 	public Lotto () {
 	}
 

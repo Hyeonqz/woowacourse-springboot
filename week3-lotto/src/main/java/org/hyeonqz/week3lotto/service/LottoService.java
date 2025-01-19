@@ -7,6 +7,8 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
+import java.util.Random;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -28,6 +30,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class LottoService {
 	private static final Logger log = LoggerFactory.getLogger(LottoService.class);
+	private static int totalWinningAmount;
 
 	private final LottoRepository lottoRepository;
 	private final LottoDataRepository lottoDataRepository;
@@ -126,6 +129,8 @@ public class LottoService {
 			LottoNumberCompare(matchCount, resultCount, hasBonus);
 		}
 
+		totalWinningAmount = getTotalWinningAmount(resultCount);
+
 		return new LottoOutput.showMatchLottoData(
 			"당첨 통계",
 			LottoEnums.THREE.getCount() + LottoEnums.THREE.getDescription() + resultCount.get(LottoEnums.THREE).toString(),
@@ -134,6 +139,27 @@ public class LottoService {
 			 LottoEnums.FIVE_BONUS.getCount()+ LottoEnums.FIVE_BONUS.getDescription() + resultCount.get(LottoEnums.FIVE_BONUS).toString(),
 			 LottoEnums.SIX.getCount() + LottoEnums.SIX.getDescription() + resultCount.get(LottoEnums.SIX).toString()
 		);
+	}
+
+	private int getTotalWinningAmount (Map<LottoEnums, Integer> resultCount) {
+		return resultCount.get(LottoEnums.THREE) * 5000 + resultCount.get(LottoEnums.FOUR) * 40000
+			+ resultCount.get(LottoEnums.FIVE) * 1500000 + resultCount.get(LottoEnums.FIVE_BONUS) * 30000000
+			+ resultCount.get(LottoEnums.SIX) * 2000000000;
+	}
+
+	public LottoOutput.showMatchRate getMatchRate () {
+		// TODO Redis 에 담아서 당첨 통계 정보를 담아두고 DB 까지 가지 않고 빠르게 조회를 한다?
+		// 내가 사용한 금액과 당첨금액을 비교해서 수익률을 비교해본다.
+		Lotto byId = lottoRepository.findById(1L)
+				.orElseThrow(() -> new RuntimeException("구매 로또 정보가 없습니다."));
+
+		Integer amount = byId.getAmount();
+		if(totalWinningAmount == 0)
+			return new LottoOutput.showMatchRate("총 수익률은 " + "0%입니다.");
+
+		int rate = (int)(((double) (totalWinningAmount - amount) / amount) * 100);
+		log.info("수익률 {}" ,rate);
+		return new LottoOutput.showMatchRate("총 수익률은 " + String.valueOf(rate) + "%입니다.");
 	}
 
 	private void LottoNumberCompare (long matchCount, Map<LottoEnums, Integer> resultCount, boolean hasBonus) {
@@ -168,7 +194,7 @@ public class LottoService {
 			.collect(Collectors.toSet());
 	}
 
-	private static long getMatchLottoCount (Set<Integer> userNumbers, Set<Integer> winningNumbers) {
+	private long getMatchLottoCount (Set<Integer> userNumbers, Set<Integer> winningNumbers) {
 		return userNumbers.stream()
 			.filter(winningNumbers::contains)
 			.count();

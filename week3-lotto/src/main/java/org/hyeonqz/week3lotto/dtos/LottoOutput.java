@@ -54,4 +54,11 @@ public class LottoOutput {
 
 
 	}
+
+	public record showMatchRate(
+		String rate
+	) {
+
+	}
+
 }
