@@ -1,5 +1,8 @@
 # 3주차 - Lotto
 
+- Swagger : http://localhost:8081/swagger-ui/index.html
+- h2-console : http://localhost:8081/h2-console
+
 ## 기능 요구사항
 #### 정적 요구사항
 - 로또 번호의 숫자 범위는 1~45 까지 이다. 
@@ -8,9 +11,10 @@
 - 로또 1장의 가격은 1,000원
 - 로또 구입 금액을 입력시 구입 금액에 해당하는 만큼 로또 발행
 - 당첨 번호와 보너스 번호를 입력받는다.
+- 내가 구매한 로또와 당첨번호를 비교한다.
+- 이번 회차 수익률을 구한다.
 
-
--> 로또 번호 출력까지는 완료 이제 로또 번호 출력에 대한 당첨 내역을 보여줘야 한다.
+<br>
 
 ## 프로그래밍 요구사항
 - 인덴트, depth 를 3이 넘지 않도록 구현하자.
@@ -22,13 +26,18 @@
 - else 예약어 사용하지 않는다.
 - enum 을 사용하자
 
+<br>
 
 ### 최종 API 실행 순서
-1) ㅇ
-2) ㅇ
-3) ㅇ
-4) ㅇ
-5) ㅇ
-6) ㅇ
-7) ㅇ
-8) ㅇ
+1) 로또 구매 -> POST, localhost:8081/api/lotto/create/{amount}
+![img.png](img/img.png) <br>
+2) 로또 당첨 번호 생성 -> POST, localhost:8081/api/lotto/create/winningNum
+![img_1.png](img/img_1.png)<br>
+3) 로또 당첨 보너스 번호 생성 -> POST, localhost:8081/api/lotto/create/bonusNum
+![img_2.png](img/img_2.png)<br>
+4) 구매한 로또 조회 -> GET, localhost:8081/api/lotto/response
+![img_3.png](img/img_3.png)<br>
+5) 로또 당첨 번호 조회 -> GET, localhost:8081/api/lotto/match
+![img_5.png](img/img_5.png)<br>
+6) 구매 로또 수익률 조회 -> GET, localhost:8081/api/lotto/rate
+![img_4.png](img/img_4.png)
