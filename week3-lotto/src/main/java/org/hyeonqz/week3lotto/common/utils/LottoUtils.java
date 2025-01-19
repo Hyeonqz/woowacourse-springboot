@@ -1,8 +1,6 @@
-package org.hyeonqz.week3lotto.utils;
+package org.hyeonqz.week3lotto.common.utils;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;

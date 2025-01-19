@@ -37,8 +37,19 @@ public class LottoOutput {
 	}
 
 	public record ResponseShowLottoData(
-		int count,
+		String count,
 		List<String> lottoNum
+	) {
+
+	}
+
+	public record showMatchLottoData(
+		String statistics,
+		String three,
+		String four,
+		String five,
+		String fiveBonus,
+		String six
 	) {
 
 

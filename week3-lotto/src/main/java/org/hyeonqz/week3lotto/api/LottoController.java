@@ -24,13 +24,13 @@ public class LottoController {
 		return ResponseEntity.ok(lotto);
 	}
 
-	@PostMapping("/response/winningNum")
+	@PostMapping("/create/winningNum")
 	public ResponseEntity<?> responseWinningNum() {
-		LottoOutput.ResponseWinning responseWinning = lottoService.responseWinningNumber();
+		LottoOutput.ResponseWinning responseWinning = lottoService.createWinningNumber();
 		return ResponseEntity.ok(responseWinning);
 	}
 
-	@PostMapping("/response/bonusNum")
+	@PostMapping("/create/bonusNum")
 	public ResponseEntity<?> responseBonusNum() {
 		LottoOutput.ResponseBonusNumber bonusNumber = lottoService.createBonusNumber();
 		return ResponseEntity.ok(bonusNumber);
@@ -40,5 +40,18 @@ public class LottoController {
 	public ResponseEntity<?> getLottoData() {
 		LottoOutput.ResponseShowLottoData lottoData = lottoService.getLottoData();
 		return ResponseEntity.ok(lottoData);
+	}
+
+	@GetMapping("/match")
+	public ResponseEntity<?> getWinningMatchData() {
+		LottoOutput.showMatchLottoData winningList = lottoService.getWinningList();
+		return ResponseEntity.ok(winningList);
+	}
+
+	// 수익률을 구한다
+	@GetMapping("/rate")
+	public ResponseEntity<?> getRateData() {
+
+		return ResponseEntity.ok("");
 	}
 }

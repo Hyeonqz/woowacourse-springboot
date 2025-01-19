@@ -27,6 +27,10 @@ public class LottoWinning {
 		return winningNumber;
 	}
 
+	public String getBonusNumber () {
+		return bonusNumber;
+	}
+
 	public LottoWinning () {
 	}
 

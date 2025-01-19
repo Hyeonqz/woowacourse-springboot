@@ -1,4 +1,4 @@
-package org.hyeonqz.week3lotto.config;
+package org.hyeonqz.week3lotto.common.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
