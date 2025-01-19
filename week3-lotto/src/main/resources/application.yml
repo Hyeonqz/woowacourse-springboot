@@ -13,16 +13,23 @@ spring:
     password: 1234
 
   jpa:
-    open-in-view: false
+    open-in-view: false # 뷰 렌더링 사용X
     hibernate:
-      ddl-auto: create
+      ddl-auto: create # h2 닌까 create
     properties:
       hibernate:
-        show_sql: true
-        format_sql: true
-        use_sql_comments: true
+        show_sql: true # 쿼리 출력
+        format_sql: true # 읽기 쉽게 포매팅
+        use_sql_comments: true # 쿼리 앞에 주석 추가
 
   h2:
     console:
       enabled: true
       path: /h2-console # localhost:8081/h2-console
+
+logging:
+  level:
+    org:
+      hibernate:
+        sql: debug
+        type.descriptor.sql: trace # 바인딩된 파라미터 값 출력
