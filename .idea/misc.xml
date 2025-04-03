@@ -3,6 +3,7 @@
   <component name="ExternalStorageConfigurationManager" enabled="true" />
   <component name="FrameworkDetectionExcludesConfiguration">
     <file type="web" url="file://$PROJECT_DIR$/week-convenience" />
+    <file type="web" url="file://$PROJECT_DIR$/week1-calculator-7" />
     <file type="web" url="file://$PROJECT_DIR$/week3-lotto" />
     <file type="web" url="file://$PROJECT_DIR$/week4-convenience" />
   </component>

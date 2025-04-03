@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/week1-calculator-7/week1-calculator-7.iml" filepath="$PROJECT_DIR$/week1-calculator-7/week1-calculator-7.iml" />
+      <module fileurl="file://$PROJECT_DIR$/week2-racingcar-7/week2-racingcar-7.iml" filepath="$PROJECT_DIR$/week2-racingcar-7/week2-racingcar-7.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/woowacourse-springboot.iml" filepath="$PROJECT_DIR$/.idea/woowacourse-springboot.iml" />
     </modules>
   </component>
